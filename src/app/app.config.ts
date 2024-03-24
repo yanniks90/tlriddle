@@ -1,8 +1,29 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
+import {provideRouter, Router} from '@angular/router';
 
-import { routes } from './app.routes';
+import {DEV_PAGE, routes} from './app.routes';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+
+export function appInitializer(router: Router) {
+  return () => {
+    const lastVisitedRoute = localStorage.getItem('lastPath');
+    const splitArr = window.location.href.split('/');
+    const calledUrl = splitArr[splitArr.length -1];
+    if (lastVisitedRoute && calledUrl !=  DEV_PAGE) {
+      router.navigateByUrl(lastVisitedRoute);
+    }
+  }
+}
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [Router]
+    }
+  ]
 };

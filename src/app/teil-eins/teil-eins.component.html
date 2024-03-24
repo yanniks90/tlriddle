@@ -1,0 +1,12 @@
+
+<div>
+  <p>Willkommen Ihr beiden. Den QR-Code habt ihr schon mal gefunden. Aber so einfach ist es natürlich nicht...</p>
+</div>
+<app-question-page [question]="'Hier Frage Nummer 1?'"
+                   [correctAnswers]="['richtig','answer', 'correct']"
+                   [followUpText]="'Super, das ist richtig. Hier folgt dann ein Rätsel für den Ort der nächsten Puzzle-Teile. ' +
+                    'z.B. Mit wem habt ihr das Essen auf dem Puzzle gegessen'"
+                   [nextPageLink]="'/teilZwei'"
+                   [code]="'1'"
+>
+</app-question-page>

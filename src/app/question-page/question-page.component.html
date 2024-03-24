@@ -1,0 +1,19 @@
+<p>{{ question }}</p>
+<div class="flex-row">
+  <mat-form-field>
+    <mat-label>Eure Antwort</mat-label>
+    <input [disabled]="successText" matInput #answer (input)="onChange($event)">
+  </mat-form-field>
+  <button [disabled]="successText" mat-raised-button color="primary" (click)="evaluateAnswer()">
+    Antworten
+  </button>
+</div>
+@if (errorText) {
+  <p>{{ errorText }}</p>
+} @else if (successText) {
+  <p>{{ successText }}</p>
+  <div *ngIf="nextPageLink" class="flex-column">
+    <mat-checkbox #newPuzzleChecked>Neue Puzzleteile gefunden?</mat-checkbox>
+    <button [disabled]="!newPuzzleChecked.checked" mat-raised-button color="primary" (click)="onNext()">Weiter</button>
+  </div>
+}

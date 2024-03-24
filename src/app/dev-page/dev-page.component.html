@@ -1,0 +1,9 @@
+<button mat-stroked-button [routerLink]="'/'">Zum Start</button>
+
+<div class="flex-column">
+  <div *ngFor="let item of storageItems" class="flex-row">
+  <span>{{item.key}}</span><span>{{item.value}}</span>
+  </div>
+
+  <button mat-stroked-button (click)="clearStorage()" color="warn">reset application</button>
+</div>

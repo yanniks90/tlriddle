@@ -1,0 +1,8 @@
+<div class="square-group">
+
+<div [@fadeInOut]
+     *ngFor="let number of numbers" class="square"
+     [ngClass]="{'square': number === 'X', 'square-green':number != 'X'}">
+  <p>{{ number }}</p>
+</div>
+</div>

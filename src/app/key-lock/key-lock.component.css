@@ -1,0 +1,26 @@
+.square {
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid black;
+  display: inline-block;
+  text-align: center;
+  line-height: 4rem; /* Center the number vertically */
+  font-size: x-large;
+}
+
+.square-green {
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid green;
+  display: inline-block;
+  text-align: center;
+  line-height: 4rem; /* Center the number vertically */
+  font-size: x-large;
+}
+
+.square-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
