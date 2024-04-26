@@ -2,11 +2,10 @@
 <div>
   <p>Willkommen Ihr beiden. Den QR-Code habt ihr schon mal gefunden. Aber so einfach ist es natürlich nicht...</p>
 </div>
-<app-question-page [question]="'Hier Frage Nummer 1?'"
-                   [correctAnswers]="['richtig','answer', 'correct']"
-                   [followUpText]="'Super, das ist richtig. Hier folgt dann ein Rätsel für den Ort der nächsten Puzzle-Teile. ' +
-                    'z.B. Mit wem habt ihr das Essen auf dem Puzzle gegessen'"
+<app-question-page [question]="'An welchem Ort steht der Turm?'"
+                   [correctAnswers]="['trogir']"
+                   [followUpText]="'Super, das ist richtig. Und wen habt Ihr an diesem Ort getroffen? Ich denke sie können euch weiterhelfen'"
                    [nextPageLink]="'/teilZwei'"
-                   [code]="'1'"
+                   [code]="'2'"
 >
 </app-question-page>

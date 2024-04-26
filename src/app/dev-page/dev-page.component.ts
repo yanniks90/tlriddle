@@ -41,6 +41,7 @@ export class DevPageComponent implements OnInit{
   clearStorage() {
     Object.keys(localStorage).forEach(key =>  localStorage.removeItem(key));
     this.storageItems = this.fromStorage();
+    window.location.reload();
   }
 }
 

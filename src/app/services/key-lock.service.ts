@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class KeyLockService {
 
-  private numbersArray = ['X', 'X', 'X'];
+  private numbersArray = ['X', 'X', 'X', 'X'];
   private numbersSubject;
   numbers ;
   numbersKey = 'localKeyNumbers';

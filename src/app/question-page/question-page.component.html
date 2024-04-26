@@ -8,6 +8,18 @@
     Antworten
   </button>
 </div>
+@if (helpText) {
+  <div class="flex-row">
+    <button mat-raised-button color="primary" (click)="onHelpClicked()">
+      Einen Tipp bitte!
+    </button>
+    @if (showHelp) {
+      <label>{{ helpText }}</label>
+    }
+  </div>
+}
+
+
 @if (errorText) {
   <p>{{ errorText }}</p>
 } @else if (successText) {

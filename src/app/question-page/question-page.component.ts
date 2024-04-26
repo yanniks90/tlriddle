@@ -5,11 +5,10 @@ import {Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatIcon} from "@angular/material/icon";
-import {NgIf} from "@angular/common";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {KeyLockService} from "../services/key-lock.service";
+import {NgIf} from "@angular/common";
 
-// @ts-ignore
 @Component({
   selector: 'app-question-page',
   standalone: true,
@@ -22,8 +21,8 @@ import {KeyLockService} from "../services/key-lock.service";
     MatInput,
     MatIconButton,
     MatIcon,
-    NgIf,
-    MatCheckbox
+    MatCheckbox,
+    NgIf
   ],
   templateUrl: './question-page.component.html',
   styleUrl: './question-page.component.css'
@@ -45,7 +44,7 @@ export class QuestionPageComponent implements OnInit {
   successText: string | undefined;
   @Input({required: true})
   correctAnswers!: string[];
-  @Input({required: true})
+  @Input()
   followUpText!: string;
   @Input({required: false})
   nextPageLink: string | undefined;
@@ -53,6 +52,10 @@ export class QuestionPageComponent implements OnInit {
   question!: string;
   @Input()
   code!: string;
+  @Input()
+  helpText!: string;
+
+  showHelp: boolean = false;
 
   localStorageAnsweredKey: string = '';
 
@@ -69,7 +72,8 @@ export class QuestionPageComponent implements OnInit {
 
   evaluateAnswer() {
     if (this.correctAnswers
-      .some((a) => this.answerInput.nativeElement.value?.toLowerCase().trim() === a)) {
+      .some((a) => this.answerInput.nativeElement.value?.toLowerCase().trim().includes(a)
+      || this.answerInput.nativeElement.value?.toLowerCase().trim().match(a))) {
       this.showCorrectAnswered();
       this.keyLockService.pushNumber(this.code)
     } else {
@@ -79,6 +83,9 @@ export class QuestionPageComponent implements OnInit {
   }
 
   showCorrectAnswered(): void {
+    if(!this.followUpText && this.nextPageLink){
+      this.router.navigateByUrl(this.nextPageLink);
+    }
     this.errorText = undefined;
     this.successText = this.followUpText;
     this.answerInput.nativeElement.disabled = true;
@@ -95,5 +102,9 @@ export class QuestionPageComponent implements OnInit {
       this.router.navigateByUrl(this.nextPageLink);
     }
 
+  }
+
+  onHelpClicked() {
+    this.showHelp = true;
   }
 }
