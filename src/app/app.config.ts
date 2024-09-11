@@ -3,6 +3,7 @@ import {provideRouter, Router} from '@angular/router';
 
 import {DEV_PAGE, routes} from './app.routes';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {provideHttpClient, withFetch} from "@angular/common/http";
 
 export function appInitializer(router: Router) {
   return () => {
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       useFactory: appInitializer,
       multi: true,
       deps: [Router]
-    }
+    },
+    provideHttpClient(withFetch())
   ]
 };

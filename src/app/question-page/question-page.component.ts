@@ -8,6 +8,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {KeyLockService} from "../services/key-lock.service";
 import {NgIf} from "@angular/common";
+import {RiddleStateService} from "../services/riddle-state.service";
 
 @Component({
   selector: 'app-question-page',
@@ -59,7 +60,7 @@ export class QuestionPageComponent implements OnInit {
 
   localStorageAnsweredKey: string = '';
 
-  constructor(private router: Router, private keyLockService: KeyLockService) {
+  constructor(private router: Router, private keyLockService: KeyLockService, private riddleState: RiddleStateService) {
 
   }
 
@@ -83,6 +84,7 @@ export class QuestionPageComponent implements OnInit {
   }
 
   showCorrectAnswered(): void {
+    this.riddleState.storeNewRiddleState();
     if(!this.followUpText && this.nextPageLink){
       this.router.navigateByUrl(this.nextPageLink);
     }
